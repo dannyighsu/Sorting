@@ -1,0 +1,24 @@
+Usage:
+    java algorithms.Main [ ALGORITHM ] [ SIZE ] [ -OPTIONS ]
+
+where ALGORITHM may be:
+
+    <"bubble"> - Bubble Sort
+    <"comb"> - Comb Sort
+    <"counting"> - Counting Sort
+    <"heap"> - Heap Sort
+    <"insertion"> - Insertion Sort
+    <"lsdradix"> - LSD Radix Sort
+    <"merge"> - Merge Sort
+    <"msdradix"> - MSD Radix Sort
+    <"quick"> - Quick Sort
+    <"selection"> - Selection Sort
+    <"shell"> - Shell Sort
+
+where OPTIONS include:
+
+    -r <RUNS>
+        Specify the number of times the array should be sorted.
+
+    -R
+        Specify that the members of the array can take any value from 0 to Integer.MAX_VALUE.
