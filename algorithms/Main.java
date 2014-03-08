@@ -47,28 +47,18 @@ public class Main {
             usage();
         }
 
-
         for (int i = 0; i < runs; i++) {
             int[] array = new int[size];
-
             if (!randomInts) {
                 array = createPermutation(size);
             } else {
                 array = createRandomPermutation(size);
-            }
-
-            for (int j : array) {
-                System.out.println(j + "j");
             }
             parseInput(algorithm, array, randomInts);
 
             for (int k = 0; k < array.length - 1; k++) {
                 if (array[k] > array[k + 1]) {
                     System.err.println("Error in sorting algorithm.");
-                    for (int j : array) {
-                        System.out.println(j);
-                        
-                    }
                     break;
                 }
             }

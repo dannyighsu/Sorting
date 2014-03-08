@@ -22,3 +22,8 @@ where OPTIONS include:
 
     -R
         Specify that the members of the array can take any value from 0 to Integer.MAX_VALUE.
+
+Test Usage:
+    java algorithms.Testing [ -t ]
+
+where -t denotes detailed test results.
