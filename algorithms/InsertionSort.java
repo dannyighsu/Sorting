@@ -10,12 +10,18 @@ public class InsertionSort {
     public static void sort(int[] array) {
         // Iterate through ARRAY, inserting array[i] into the sorted elements.
         for (int i = 1; i < array.length; i++) {
-            int value = array[i];
             int k = i;
-            for (k = i; value < array[k - 1]; k--) {
-                array[k] = array[k - 1];
+            while (k > 0 && array[k] < array[k - 1]) {
+                swap(array, k, k - 1);
+                k -= 1;
             }
-            array[k] = value;
         }
+    }
+
+    /** Swap elements. */
+    private static void swap(int[] array, int i, int k) {
+        array[i] = array[i] ^ array[k];
+        array[k] = array[i] ^ array[k];
+        array[i] = array[i] ^ array[k];
     }
 }

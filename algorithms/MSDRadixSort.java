@@ -38,7 +38,11 @@ public class MSDRadixSort {
             bins.add(new ArrayDeque<Integer>());
         }
         for (int i : array) {
-            int num = Integer.parseInt(Integer.toString(i).substring(digit, digit + 1));
+            for (int k = 1; k < n; k++) {
+                i /= 10;
+            }
+            int num = i % 10;
+            
             for (int k = 0; k <= 9; k++) {
                 if (num == k) {
                     bins.get(k).add(i);

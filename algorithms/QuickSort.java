@@ -19,7 +19,7 @@ public class QuickSort {
         if (left < right) {
             int pivot = choosePivot(array, left, right);
             int pivotIndex = partition(array, left, right, pivot);
-            sort(array, left, pivotIndex + 1);
+            sort(array, left, pivotIndex);
             sort(array, pivotIndex + 1, right);
         }
     }

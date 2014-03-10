@@ -9,32 +9,44 @@ public class MergeSort {
 
     /** Sort ARRAY using Merge Sort. */
     public static void sort(int[] array) {
-        int[] result = new int[array.length];
-        split(array, 0, array.length, result);
+        int[] helper = new int[array.length];
+        split(array, 0, array.length, helper);
     }
 
     /** Split ARRAY into halves recursively. */
-    public static void split(int[] array, int start, int end, int[] result) {
-        if (end - start < 2) {
+    public static void split(int[] array, int start, int end, int[] helper) {
+        if (end <= start) {
             return;
         }
-        int mid = end - start / 2;
-        split(array, start, mid, result);
-        split(array, mid, end, result);
-        merge(array, start, mid, end, result);
-        System.arraycopy(result, start, array, start, end - start);
+        int mid = start + (end - start) / 2;
+        split(array, start, mid, helper);
+        split(array, mid + 1, end, helper);
+        merge(array, start, mid, end, helper);
     }
 
     /** Merge the halves of ARRAY. */
-    public static void merge(int[] array, int start, int mid, int end, int[] result) {
-        int i = start; int k = mid;
+    public static void merge(int[] array, int start, int mid, int end, int[] helper) {
+        for (int i = start; i < end; i++) {
+            helper[i] = array[i];
+        }
 
-        for (int j = start; j < end; j++) {
-            if (i < mid && (k >= end || array[i] <= array[k])) {
-                result[j] = array[i++];
+        int i = start; int j = mid + 1; int k = start;
+
+        while (i <= mid && j < end) {
+            if (helper[i] <= helper[j]) {
+                array[k] = helper[i];
+                i++;
             } else {
-                result[j] = array[k++];
+                array[k] = helper[j];
+                j++;
             }
+                k++;
+        }
+
+        while (i <= mid) {
+            array[k] = helper[i];
+            k++;
+            i++;
         }
     }
 }

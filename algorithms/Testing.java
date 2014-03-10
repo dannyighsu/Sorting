@@ -92,9 +92,9 @@ import java.util.Random;
                     for (int k = 1; k < array.length; k += 1) {
                         System.out.printf(", %d", array[k]);
                     }
-                    System.out.println("}");
+                    System.out.println("}\n");
                 }
-                System.exit(1);
+                return;
             }
         }
     }

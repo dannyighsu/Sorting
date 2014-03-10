@@ -11,10 +11,10 @@ public class SelectionSort {
 
     /** Sort ARRAY using Insertion sort. */
     public static void sort(int[] array) {
-        int i = 0; int j = 0;
+        int i; int j;
         for (j = 0; j < array.length - 1; j++) {
             int min = j;
-            for (i = j + 1; i < array.length - 1; i++) {
+            for (i = j + 1; i < array.length; i++) {
                 if (array[i] < array[min]) {
                     min = i;
                 }
