@@ -2,7 +2,8 @@ package algorithms;
 
 /** Comb sort is an improved version of bubble sort. Generally ineffective
  *  on larger arrays. This implementation uses a shrink factor of 1.3.
- *  The shrink factor is the ratio of gap sizes between each successive iteration.
+ *  The shrink factor is the ratio of gap sizes between each successive
+ *  iteration.
  *  O(n^2) worst-case, O(n) best-case, O(n^2) average.
  *  @author D. Hsu */
 
@@ -13,6 +14,7 @@ public class CombSort {
         int gap = array.length;
         float shrink = (float) 1.3;
         boolean swapped = true;
+
         while (gap != 1 && swapped) {
             gap = (int) Math.floor(gap / shrink);
             if (gap < 1) {

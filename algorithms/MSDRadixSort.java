@@ -1,7 +1,7 @@
 package algorithms;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /** MSD Radix Sort. Stable, in-place. Sorts starting with the
  *  most significant digit, putting each digit into buckets progessively.
@@ -31,30 +31,29 @@ public class MSDRadixSort {
     }
 
     /** Sort ARRAY by digit N. */
-    public static void sortDigit(int[] array, int n) {
+    private static void sortDigit(int[] array, int n) {
         int digit = array.length - n;
-        ArrayList<ArrayDeque<Integer>> bins = new ArrayList<ArrayDeque<Integer>>();
+        HashMap<Integer, ArrayDeque<Integer>> bins =
+        new HashMap<Integer, ArrayDeque<Integer>>();
+
         for (int i = 0; i <= 9; i++) {
-            bins.add(new ArrayDeque<Integer>());
+            bins.put(i, new ArrayDeque<Integer>());
         }
+
         for (int i : array) {
             for (int k = 1; k < n; k++) {
                 i /= 10;
             }
             int num = i % 10;
-            
-            for (int k = 0; k <= 9; k++) {
-                if (num == k) {
-                    bins.get(k).add(i);
-                    break;
-                }
-            }
-            int index = 0;
-            for (ArrayDeque<Integer> bin : bins) {
-                while (!bin.isEmpty()) {
-                    array[index] = bin.remove();
-                    index += 1;
-                }
+            bins.get(num).add(i);
+        }
+        int index = 0;
+
+        for (int k = 0; k <= 9; k++) {
+            ArrayDeque<Integer> bin = bins.get(k);
+            while (!bin.isEmpty()) {
+                array[index] = bin.remove();
+                index += 1;
             }
         }
     }

@@ -25,7 +25,7 @@ import java.util.Random;
         check(array, "Comb", t);
 
         array = createPermutation(1000);
-        CountingSort.sort(array, 1000);
+        CountingSort.sort(array, 999);
         check(array, "Counting", t);
 
         array = createPermutation(1000);

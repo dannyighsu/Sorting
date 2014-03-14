@@ -83,10 +83,10 @@ public class Main {
             break;
         case "counting":
             if (random) {
-                CountingSort.sort(array, Integer.MAX_VALUE);
+                CountingSort.sort(array, Integer.MAX_VALUE - 1);
             }
             else {
-                CountingSort.sort(array, array.length);
+                CountingSort.sort(array, array.length - 1);
             }
             break;
         case "heap":
@@ -152,7 +152,7 @@ public class Main {
         Scanner usage;
 
         try {
-            usage = new Scanner(new File("algorithms/Usage.txt"));
+            usage = new Scanner(new File("../Usage.txt"));
         } catch (IOException e) {
             System.out.println("No help found.");
             System.exit(1);
