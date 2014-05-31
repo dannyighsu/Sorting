@@ -39,7 +39,7 @@ public class HeapSort {
 
         while (root * 2 + 1 <= end) {
             int child = root * 2 + 1;
-            int swap = child;
+            int swap = root;
             if (array[swap] < array[child]) {
                 swap = child;
             }
@@ -47,7 +47,9 @@ public class HeapSort {
                 swap = child + 1;
             }
             if (swap != root) {
-                int temp = array[root]; array[root] = array[swap]; array[swap] = temp;
+                int temp = array[root];
+                array[root] = array[swap];
+                array[swap] = temp;
                 root = swap;
             } else {
                 return;
