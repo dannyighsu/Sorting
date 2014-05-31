@@ -9,6 +9,7 @@ import java.util.Random;
 
     /** Run all tests. */
     public static void main(String[] input) {
+        System.out.println("No output means pass.");
         boolean t = false;
         if (input.length == 1 && input[0].equals("-t")) {
             t = true;

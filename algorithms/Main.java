@@ -152,7 +152,7 @@ public class Main {
         Scanner usage;
 
         try {
-            usage = new Scanner(new File("../Usage.txt"));
+            usage = new Scanner(new File("Usage.txt"));
         } catch (IOException e) {
             System.out.println("No help found.");
             System.exit(1);

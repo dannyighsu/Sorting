@@ -15,7 +15,7 @@ public class CombSort {
         float shrink = (float) 1.3;
         boolean swapped = true;
 
-        while (gap != 1 && swapped) {
+        while (swapped) {
             gap = (int) Math.floor(gap / shrink);
             if (gap < 1) {
                 gap = 1;
