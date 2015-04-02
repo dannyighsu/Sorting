@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.HashMap;
 
 /** Quicksort is an unstable sort with O(lgn) memory. It
  *  sorts an array by picking a pivot, then reordering the list
@@ -48,13 +49,15 @@ public class QuickSort {
     /** Choose a pivot for ARRAY by taking the median of 3 random elements. */
     public static int choosePivot(int[] array, int left, int right) {
         Random rand = new Random();
-        int[] randoms = new int[3];
-        for (int i = 0; i < randoms.length; i++) {
+        HashMap<Integer, Integer> randoms = new HashMap<Integer, Integer>();
+        int[] buffer = new int[3];
+        for (int i = 0; i < buffer.length; i++) {
             int randInt = rand.nextInt(right - left) + left;
-            randoms[i] = array[randInt];
+            randoms.put(array[randInt], randInt);
+            buffer[i] = array[randInt];
         }
-        Arrays.sort(randoms);
-        return randoms[1];
+        Arrays.sort(buffer);
+        return randoms.get(buffer[1]);
     }
 
 }

@@ -18,10 +18,12 @@ public class Main {
     /** Runs the given sorting algorithm.
     *   Prints out the elapsed time in milliseconds. */
     public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-
-        if (args.length > 5) {
+        if (args.length > 6 || args.length < 1) {
             usage();
+        }
+
+        if (args[0].equals("-C")) {
+            comp(args);
         }
 
         String algorithm = null;
@@ -46,6 +48,7 @@ public class Main {
         } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             usage();
         }
+        long startTime = System.currentTimeMillis();
 
         for (int i = 0; i < runs; i++) {
             int[] array = new int[size];
@@ -68,6 +71,101 @@ public class Main {
         System.out.printf("%d run(s) of %s took %d milliseconds, at an average of"
                 + " %s milliseconds per run.\n",
                 runs, algorithm, elapsed, elapsed / runs);
+    }
+
+    /** Run in comparison mode. */
+    private static void comp(String[] args) {
+        if (args.length > 7) {
+            usage();
+        }
+
+        String algorithm1 = null;
+        String algorithm2 = null;
+        int size = 0;
+        int runs = 1;
+        boolean randomInts = false;
+
+        try {
+            algorithm1 = args[1];
+            algorithm2 = args[2];
+
+            size = Integer.parseInt(args[3]);
+
+            for (int i = 4; i < args.length; i++) {
+                if (args[i].equals("-r")) {
+                    runs = Integer.parseInt(args[i + 1]);
+                    i += 1;
+                } else if (args[i].equals("-R")) {
+                    randomInts = true;
+                } else {
+                    usage();
+                }
+            }
+        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+            usage();
+        }
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < runs; i++) {
+            int[] array = new int[size];
+            if (!randomInts) {
+                array = createPermutation(size);
+            } else {
+                array = createRandomPermutation(size);
+            }
+            parseInput(algorithm1, array, randomInts);
+
+            if (i == 0) {
+                for (int k = 0; k < size - 1; k++) {
+                    if (array[k] > array[k + 1]) {
+                        System.err.println("Error in sorting algorithm.");
+                        break;
+                    }
+                }
+            }
+        }
+
+        long elapsed1 = System.currentTimeMillis() - startTime;
+        System.out.printf("%d run(s) of %s took %d milliseconds, at an average"
+            + " of %s milliseconds per run.\n",
+                runs, algorithm1, elapsed1, elapsed1 / runs);
+
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < runs; i++) {
+            int[] array = new int[size];
+            if (!randomInts) {
+                array = createPermutation(size);
+            } else {
+                array = createRandomPermutation(size);
+            }
+            parseInput(algorithm2, array, randomInts);
+
+            if (i == 0) {
+                for (int k = 0; k < size - 1; k++) {
+                    if (array[k] > array[k + 1]) {
+                        System.err.println("Error in sorting algorithm.");
+                        break;
+                    }
+                }
+            }
+        }
+
+        long elapsed2 = System.currentTimeMillis() - startTime;
+        System.out.printf("%d run(s) of %s took %d milliseconds, at an average"
+            + " of %s milliseconds per run.\n",
+                runs, algorithm2, elapsed2, elapsed2 / runs);
+        if (elapsed2 > elapsed1) {
+            String temp = algorithm2;
+            algorithm2 = algorithm1;
+            algorithm1 = temp;
+            long temp1 = elapsed1;
+            elapsed1 = elapsed2;
+            elapsed2 = temp1;
+        }
+        System.out.printf("%s took %d milliseconds longer than %s at a size "
+            + "of %d with %d runs.\n", algorithm1, elapsed1 - elapsed2,
+                algorithm2, size, runs);
+        System.exit(0);
     }
 
     /** Parses the given input ARRAY and runs the sorting algorithm designated by
