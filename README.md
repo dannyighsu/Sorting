@@ -11,7 +11,8 @@ Usage:
 
     java algorithms.Main [ COMPARE ] [ ALGORITHM ] [ SIZE ] [ -OPTIONS ]
 
-where COMPARE indicates the "-C" comparison flag:
+where COMPARE indicates the "-C" comparison flag
+
 Usage in comparison mode:
 
     java algorithms.Main -C [ ALGORITHM ] [ ALGORITHM ] [ SIZE ] [ -OPTIONS ]
